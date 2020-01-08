@@ -18,4 +18,6 @@ public interface ICustomerServiceDao {
 
     Map<String, CustomerService> getStore();
 
+    public boolean credentialsCorrect(String mobileno ,String name);
+
 }

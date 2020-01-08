@@ -2,14 +2,17 @@ package com.deloitte.telcom.dao;
 
 import com.deloitte.telcom.exceptions.*;
 import com.deloitte.telcom.entities.CustomerService;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+@Repository
 public class CustomerServiceDaoImpl implements ICustomerServiceDao {
     Map<String, CustomerService> store = new HashMap<>();
+
     public Map<String, CustomerService> getStore(){
         return store;
     }
@@ -50,5 +53,14 @@ public class CustomerServiceDaoImpl implements ICustomerServiceDao {
             throw new CustomerNotFoundException("Mobile no is not registered");
         }
         return c;
+    }
+
+    @Override
+    public boolean credentialsCorrect(String mobileno ,String name){
+        CustomerService cs=store.get(mobileno);
+        if(cs==null){
+            return false;
+        }
+        return cs.getName().equals(name);
     }
 }

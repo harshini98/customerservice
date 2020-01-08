@@ -11,4 +11,6 @@ public interface ICustomerService {
 
     CustomerService customerDetails(String mobileno);
 
+    public boolean credentialsCorrect(String mobileno ,String name);
+
 }

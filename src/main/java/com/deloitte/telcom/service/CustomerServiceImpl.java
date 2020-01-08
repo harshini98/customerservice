@@ -3,7 +3,9 @@ package com.deloitte.telcom.service;
 import com.deloitte.telcom.dao.ICustomerServiceDao;
 import com.deloitte.telcom.entities.CustomerService;
 import com.deloitte.telcom.exceptions.IncorrectNumberException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CustomerServiceImpl implements ICustomerService {
     private ICustomerServiceDao dao;
 
@@ -45,5 +47,10 @@ public class CustomerServiceImpl implements ICustomerService {
         }
         CustomerService c = dao.customerDetails(mobileno);
         return c;
+    }
+
+    @Override
+    public boolean credentialsCorrect(String mobileno ,String name){
+        return dao.credentialsCorrect(mobileno, name);
     }
 }
